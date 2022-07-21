@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import "././Login.css";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const onFinish = (values) => {
@@ -63,13 +64,16 @@ export default function Login() {
           </Form.Item>
 
           <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              className="login-form-button"
-            >
-              Ingresar
-            </Button>
+            <Link to="/test">
+              {" "}
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="login-form-button"
+              >
+                Ingresar
+              </Button>
+            </Link>
             <a href="">Click aqui para registrarse</a>
           </Form.Item>
         </Form>
