@@ -1,52 +1,77 @@
-import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import "./Login.css";
+import React from "react";
+import { Form, Input, Button, Checkbox } from "antd";
+import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import "././Login.css";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  function validateForm() {
-    return email.length > 0 && password.length > 0;
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
+  const onFinish = (values) => {
+    console.log("Received values of form: ", values);
+  };
 
   return (
     <>
+      {" "}
       <h1 className="Saludo">
         Bienvenidos! aprender a hablar en ingles, esta cada vez mas cerca.
       </h1>
-      <div className="Login">
-        <Form onSubmit={handleSubmit}>
-          <Form.Group size="lg" controlId="email">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              autoFocus
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group size="lg" controlId="password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </Form.Group>
-          <Button
-            block="true"
-            size="lg"
-            type="submit"
-            disabled={!validateForm()}
+      <div className="container">
+        <Form
+          name="normal_login"
+          className="login-form"
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={onFinish}
+        >
+          <Form.Item
+            name="username"
+            rules={[
+              {
+                required: true,
+                message: "Por favor ingrese su usuario!",
+              },
+            ]}
           >
-            Login
-          </Button>
+            <Input
+              prefix={<UserOutlined className="site-form-item-icon" />}
+              placeholder="Usuario"
+            />
+          </Form.Item>
+          <Form.Item
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: "Por favor, ingrese su clave!",
+              },
+            ]}
+          >
+            <Input
+              prefix={<LockOutlined className="site-form-item-icon" />}
+              type="password"
+              placeholder="Password"
+            />
+          </Form.Item>
+          <Form.Item>
+            <Form.Item name="remember" valuePropName="checked" noStyle>
+              <Checkbox>Recuerdame</Checkbox>
+            </Form.Item>
+
+            <a className="login-form-forgot" href="">
+              Olvido su clave?
+            </a>
+          </Form.Item>
+
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="login-form-button"
+            >
+              Ingresar
+            </Button>
+            <a href="">Click aqui para registrarse</a>
+          </Form.Item>
         </Form>
       </div>
     </>
