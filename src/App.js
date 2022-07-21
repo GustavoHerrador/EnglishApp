@@ -1,9 +1,15 @@
-import "./App.css";
 import MyRoutes from "./Routes/MyRoutes";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "antd/dist/antd.css";
+import "././App.css";
+import { Footer } from "antd/lib/layout/layout";
 
 function App() {
-  return <MyRoutes />;
+  return (
+    <div className="container">
+      <MyRoutes />
+      <Footer> Copyright 2022 by Gustavo Herrador</Footer>
+    </div>
+  );
 }
 
 export default App;
